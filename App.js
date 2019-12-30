@@ -2,22 +2,20 @@ import React from 'react';
 import { View, Text, StyleSheets } from 'react-native';
 import Signin from './src/screens/Signin';
 import Header from './src/components/header';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import signinReducer from './src/reducers/signinReducer'
+
+const store = createStore(signinReducer);
 
 class App extends React.Component {
-    constructor(props) {
-        super(props) 
-            this.state = {
-                signinUsername: '',
-                password: ''
-            }
-        }
-
-
         render() { 
             return (
             <View>
-                <Header/>
-                <Signin/>
+                <Provider store = { store }>
+                    <Header/>
+                    <Signin/>
+                </Provider>
             </View>
             )
         }

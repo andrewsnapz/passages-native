@@ -1,0 +1,4 @@
+export const ENTER_USERNAME = "ENTER_USERNAME";
+export const ENTER_PASSWORD = "ENTER_PASSWORD";
+export const ENTER_FULLNAME = "ENTER_FULLNAME";
+export const ENTER_EMAIL = "ENTER_EMAIL";

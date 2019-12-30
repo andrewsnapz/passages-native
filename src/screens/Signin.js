@@ -1,16 +1,46 @@
-import React from "react";
-import { View, Text, StyleSheet } from "react-native";
-import TextInput from "../components/textUserInput";
-// import FBLoginButton from "../components/FBLoginButton";
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import TextInput from '../components/textUserInput';
+import * as actions from '../actions/actions';
+import { connect } from 'react-redux';
 
-const Signin = () => {
 
-    return(
+const mapDispatchToProps = dispatch => ({
+    enterUsername: (text) => {
+        dispatch(actions.enterUsername(text));
+    },
+
+    enterPassword: (text) => { 
+        dispatch(actions.enterPassword(text));
+    }
+});
+
+const mapStateToProps = state => ({
+    username: state.signin.username,
+    password: state.signin.password,
+})
+
+class Signin extends React.Component { 
+    constructor(props) { 
+        super(props);
+    }
+
+    render() { 
+        return ( 
         <View>
+            {console.log("THIS IS THE USERNAME: ", this.props.username)}
             <Text> I am in the Signin Screen </Text>
-            <TextInput />
+            <TextInput 
+            username = { this.props.username }
+            password = { this.props.password }
+            enterUsername = { this.props.enterUsername } 
+            enterPassword = { this.props.enterPassword }
+            />
         </View>
-    )
+        )
+    }
 }
 
-export default Signin;
+const styles = StyleSheet.create({});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Signin);

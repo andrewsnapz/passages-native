@@ -1,15 +1,20 @@
 import React from "react";
-import { View, Text, StyleSheet, TextInput } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 
-const TextUserInput = () => {
+const TextUserInput = props => {
     return ( 
         <View style = { styles.viewStyle1 } >
+            {console.log("these are the props:", props)}
             <TextInput style = { styles.textInputStyle1 } ></TextInput>
-            <TextInput style = { styles.textInputStyle2 } placeholder = "username or email"></TextInput>
-            <TextInput style = { styles.textInputStyle3 } placeholder = "password"></TextInput>
+            <TextInput style = { styles.textInputStyle2 } placeholder = "username or email" value = { props.username } onChangeText = { props.enterUsername }></TextInput>
+            <TextInput style = { styles.textInputStyle3 } placeholder = "password" value = { props.password } onChangeText = { props.enterPassword }></TextInput>
             <View style = { styles.viewStyle2 } >
-            <Text style = { styles.signup }>Don't have an account? Signup! </Text>
-            <Text style = { styles.forgotPassword }>Forgot Password?</Text>
+            <TouchableOpacity>
+                <Text style = { styles.signup }>Don't have an account? Signup! </Text>
+            </TouchableOpacity>
+            <TouchableOpacity>
+                <Text style = { styles.forgotPassword }>Forgot Password?</Text>
+            </TouchableOpacity>
             </View>
         </View>
     )
