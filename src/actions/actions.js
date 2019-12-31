@@ -9,3 +9,8 @@ export const enterPassword = password => ({
     type: types.ENTER_PASSWORD,
     payload: password,
 })
+
+export const forgotPassword = () => ({
+    type: types.FORGOT_PASSWORD,
+    payload: forgotPassword,
+})

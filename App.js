@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheets } from 'react-native';
 import Signin from './src/screens/Signin';
-import Header from './src/components/header';
+import Header from './src/components/Header';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import signinReducer from './src/reducers/signinReducer'

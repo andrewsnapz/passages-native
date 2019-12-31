@@ -6,6 +6,7 @@ const initialState = {
     email: '',
     password: '',
     fullName: '',
+    forgotPassword: false,
 };
 
 const signinReducer = (state = initialState, action) => {
@@ -21,7 +22,13 @@ const signinReducer = (state = initialState, action) => {
             return { 
                 ...state,
                 password: action.payload,
-            }
+            };
+        
+        case types.FORGOT_PASSWORD:
+            return { 
+                ...state,
+                forgotPassword: !state.forgotPassword
+            };
 
         default:
             return state;

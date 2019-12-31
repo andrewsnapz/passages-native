@@ -1,19 +1,29 @@
 import React from "react";
-import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Modal, Button } from 'react-native';
+import ForgotPassword from './ForgotPassword'
 
 const TextUserInput = props => {
     return ( 
         <View style = { styles.viewStyle1 } >
-            {console.log("these are the props:", props)}
+            {console.log("These are the props: ", props)}
             <TextInput style = { styles.textInputStyle1 } ></TextInput>
             <TextInput style = { styles.textInputStyle2 } placeholder = "username or email" value = { props.username } onChangeText = { props.enterUsername }></TextInput>
             <TextInput style = { styles.textInputStyle3 } placeholder = "password" value = { props.password } onChangeText = { props.enterPassword }></TextInput>
             <View style = { styles.viewStyle2 } >
             <TouchableOpacity>
-                <Text style = { styles.signup }>Don't have an account? Signup! </Text>
+                <Text style = { styles.signup }> Don't have an account? Signup! </Text>
             </TouchableOpacity>
-            <TouchableOpacity>
-                <Text style = { styles.forgotPassword }>Forgot Password?</Text>
+            <TouchableOpacity onPress = { props.forgotPassword } >
+                {/* { props.forgotPasswordBoolean? <ForgotPassword visible = { props.forgotPasswordBoolean } visibleFunction = { props.forgotPassword }/> : <Text style = { styles.forgotPassword }>Forgot Password?</Text> } */}
+                {props.forgotPasswordBoolean? 
+                <Modal visible = {props.forgotPasswordBoolean} onRequestClose = {props.forgotPassword}> 
+                    <View>
+                        <Text> Trouble Logging In? Please Enter Email for a Valdiation Link! </Text>
+                        <TextInput style = { styles.textInputStyle1 } placeholder = "Please enter your email"></TextInput>
+                        <Button title = "Send" />
+                        <Button onPress = {props.forgotPassword} title = "Back To Login" />
+                    </View>
+                </Modal> : <Text style = { styles.forgotPassword }>Forgot Password?</Text>}
             </TouchableOpacity>
             </View>
         </View>
