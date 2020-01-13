@@ -10,6 +10,7 @@ export const enterPassword = password => ({
     payload: password,
 })
 
+//Toggles the appearance of the Modal in TextUserInput:
 export const forgotPassword = () => ({
     type: types.FORGOT_PASSWORD,
     payload: forgotPassword,

@@ -1,6 +1,5 @@
 import React from "react";
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, Modal, Button } from 'react-native';
-import ForgotPassword from './ForgotPassword'
 
 const TextUserInput = props => {
     return ( 
@@ -8,13 +7,14 @@ const TextUserInput = props => {
             {console.log("These are the props: ", props)}
             <TextInput style = { styles.textInputStyle1 } ></TextInput>
             <TextInput style = { styles.textInputStyle2 } placeholder = "username or email" value = { props.username } onChangeText = { props.enterUsername }></TextInput>
-            <TextInput style = { styles.textInputStyle3 } placeholder = "password" value = { props.password } onChangeText = { props.enterPassword }></TextInput>
+            <TextInput style = { styles.textInputStyle3 } secureTextEntry = { true } placeholder = "password" value = { props.password } onChangeText = { props.enterPassword }></TextInput>
             <View style = { styles.viewStyle2 } >
             <TouchableOpacity>
                 <Text style = { styles.signup }> Don't have an account? Signup! </Text>
             </TouchableOpacity>
+
+            {/* When you press Forgot Password? It changes the state property "forgot password" to true. Through conditional rendering, it shows the modal:  */}
             <TouchableOpacity onPress = { props.forgotPassword } >
-                {/* { props.forgotPasswordBoolean? <ForgotPassword visible = { props.forgotPasswordBoolean } visibleFunction = { props.forgotPassword }/> : <Text style = { styles.forgotPassword }>Forgot Password?</Text> } */}
                 {props.forgotPasswordBoolean? 
                 <Modal visible = {props.forgotPasswordBoolean} onRequestClose = {props.forgotPassword}> 
                     <View>
