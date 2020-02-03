@@ -3,3 +3,4 @@ export const ENTER_PASSWORD = "ENTER_PASSWORD";
 export const ENTER_FULLNAME = "ENTER_FULLNAME";
 export const ENTER_EMAIL = "ENTER_EMAIL";
 export const FORGOT_PASSWORD = "FORGOT_PASSWORD";
+// export const MOVE_TO_SIGNUP = "MOVE_TO_SIGNUP";

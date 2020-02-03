@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Modal, Button } from 'react-native';
 import TextInput from '../components/TextUserInput';
 import * as actions from '../actions/actions';
 import { connect } from 'react-redux';
@@ -33,7 +33,6 @@ class Signin extends React.Component {
     render() { 
         return ( 
         <View>
-            <Text> I am in the Signin Screen </Text>
             <TextInput 
             username = { this.props.username }
             password = { this.props.password }
@@ -42,11 +41,42 @@ class Signin extends React.Component {
             enterUsername = { this.props.enterUsername } 
             enterPassword = { this.props.enterPassword }
             />
+
+            <View style = { styles.viewStyle2 } >
+            <TouchableOpacity onPress = { () => this.props.navigation.navigate('Signup') }>
+                <Text style = { styles.signup }> Don't have an account? Signup! </Text>
+            </TouchableOpacity>
+
+            {/* When you press Forgot Password? It changes the state property "forgot password" to true. Through conditional rendering, it shows the modal:  */}
+            <TouchableOpacity onPress = { this.props.forgotPassword } >
+                {this.props.forgotPasswordBoolean? 
+                <Modal visible = { this.props.forgotPasswordBoolean } onRequestClose = { this.props.forgotPassword } transparent = { true }> 
+                    <View>
+                        <Text> Trouble Logging In? Please Enter Email for a Valdiation Link! </Text>
+                        <TextInput style = { styles.textInputStyle1 } placeholder = "Please enter your email"></TextInput>
+                        <Button title = "Send" />
+                        <Button onPress = { this.props.forgotPassword } title = "Back To Login" />
+                    </View>
+                </Modal> : <Text style = { styles.forgotPassword }>Forgot Password?</Text>}
+            </TouchableOpacity>
+            </View>
         </View>
         )
     }
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+    viewStyle2: { 
+        display:"flex",
+        flexDirection: "row",
+        justifyContent: "space-between"
+    },
+    signup: { 
+        alignSelf: "flex-start"
+    },
+    forgotPassword: { 
+        alignSelf: "flex-end"
+    }
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Signin);
